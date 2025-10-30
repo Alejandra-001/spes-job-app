@@ -1,0 +1,91 @@
+/* === MisPostulaciones - Estilos generales === */
+.container {
+  background-color: #f8f9fa;
+  padding-bottom: 40px;
+}
+
+/* === Tarjetas de la lista de postulaciones === */
+.vacante-card {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vacante-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+}
+
+.vacante-card.activa {
+  border: 2px solid #0d6efd;
+  background-color: #e9f2ff;
+  transform: scale(1.01);
+}
+
+/* === Contenido interno de la tarjeta === */
+.vacante-card .card-body {
+  padding: 1rem 1.2rem;
+}
+
+.vacante-card .card-title {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.vacante-card .text-success {
+  font-weight: 500;
+}
+
+/* === Detalle de vacante seleccionada === */
+.col-md-7 .card {
+  border-radius: 14px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.col-md-7 .card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.col-md-7 h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.col-md-7 hr {
+  border-top: 1px solid #dee2e6;
+}
+
+/* === Estado visual (preseleccionado / no seleccionado / pendiente) === */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.6em;
+  border-radius: 6px;
+}
+
+/* === Placeholder cuando no hay selección === */
+.text-center.text-muted {
+  font-size: 1rem;
+  padding: 2rem;
+  border: 1px dashed #ccc;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+/* === Responsividad === */
+@media (max-width: 768px) {
+  .col-md-5,
+  .col-md-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .vacante-card {
+    margin-bottom: 1rem;
+  }
+
+  .col-md-7 .card {
+    margin-top: 1.5rem;
+  }
+}

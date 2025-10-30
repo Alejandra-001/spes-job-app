@@ -1,0 +1,88 @@
+.buscar-vacantes {
+  max-width: 1200px;
+}
+
+.filtros {
+  gap: 10px;
+}
+
+.filtro-input {
+  width: 40%;
+  min-width: 280px;
+}
+
+.filtro-select {
+  width: 180px;
+}
+
+.lista-vacantes {
+  max-height: 75vh;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  padding-right: 5px;
+}
+
+.vacante-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.vacante-card:hover {
+  background-color: #f8f9fa;
+  border-left: 4px solid #0d6efd;
+}
+
+.vacante-card.activa {
+  border-left: 4px solid #0d6efd;
+  background-color: #f1f5ff;
+}
+
+.detalle-vacante {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.detalle-vacante .card {
+  border: none;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detalle-descripcion {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.card-body small {
+  display: inline-block;
+  background-color: #eafaf1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #198754;
+  font-weight: 500;
+}
+
+.buscar-vacantes .card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.buscar-vacantes .card:hover {
+  transform: translateY(-5px);
+}
+
+.buscar-vacantes select,
+.buscar-vacantes input {
+  max-width: 250px;
+}

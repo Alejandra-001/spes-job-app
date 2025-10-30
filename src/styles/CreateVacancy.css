@@ -1,0 +1,44 @@
+.crear-vacante {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.crear-vacante h2 {
+  font-weight: 700;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #1b3b6f;
+}
+
+.btn-success {
+  background-color: #1b3b6f;
+  border-color: #1b3b6f;
+}
+
+.btn-success:hover {
+  background-color: #16325c;
+  border-color: #16325c;
+}
+
+.list-group-item {
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #dee2e6;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

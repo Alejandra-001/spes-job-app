@@ -1,0 +1,30 @@
+/* ====== LISTA DE SUGERENCIAS ====== */
+.suggestion-list {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inicio-container {
+  margin-top: 120px; /* baja todo el contenido principal del Home */
+}
+
+
+.suggestion-list li {
+  list-style: none;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.suggestion-list li:hover {
+  background-color: #f8f9fa;
+}

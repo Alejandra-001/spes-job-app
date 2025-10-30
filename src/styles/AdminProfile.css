@@ -1,0 +1,35 @@
+.perfil-admin {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.logo-preview {
+  border-radius: 12px;
+  border: 2px solid #1b3b6f;
+  padding: 6px;
+  background-color: #f8f9fa;
+}
+
+.btn-outline-primary {
+  color: #1b3b6f;
+  border-color: #1b3b6f;
+}
+
+.btn-outline-primary:hover {
+  background-color: #1b3b6f;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

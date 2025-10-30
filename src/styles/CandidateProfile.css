@@ -1,0 +1,51 @@
+.perfil-candidato {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.perfil-candidato .card {
+  border-radius: 10px;
+}
+
+.perfil-candidato h2 {
+  color: #1b3b6f;
+  font-weight: bold;
+}
+
+.perfil-candidato .btn-primary {
+  background-color: #1b3b6f;
+  border: none;
+}
+
+.perfil-candidato .btn-primary:hover {
+  background-color: #0a2647;
+}
+
+.perfil-candidato .btn-success {
+  background-color: #2a9d8f;
+  border: none;
+}
+
+.perfil-candidato .btn-success:hover {
+  background-color: #21867a;
+}
+
+.alert-info {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border-radius: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

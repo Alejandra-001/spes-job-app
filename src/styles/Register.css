@@ -1,0 +1,93 @@
+/* === Estilos generales del formulario de registro === */
+.container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Logo */
+.container img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Título */
+.container h3 {
+  color: #1b3b6f;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Campos de entrada */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #1b3b6f;
+  box-shadow: 0 0 5px rgba(27, 59, 111, 0.4);
+}
+
+/* Etiquetas */
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Botón principal */
+.btn-primary {
+  background-color: #1b3b6f;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #254a88;
+}
+
+/* Mensajes de error */
+.text-danger {
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* Texto inferior con enlace */
+.text-primary[role="button"] {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.text-primary[role="button"]:hover {
+  color: #0a58ca;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsividad === */
+@media (max-width: 576px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .container h3 {
+    font-size: 1.4rem;
+  }
+}

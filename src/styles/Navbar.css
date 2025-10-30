@@ -1,0 +1,27 @@
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #f8f9fa !important;
+}
+
+/* Dropdown personalizado */
+.dropdown-menu {
+  border-radius: 8px;
+  min-width: 160px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
