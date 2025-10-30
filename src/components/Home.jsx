@@ -65,8 +65,8 @@ export default function Home() {
   return (
     <div className="inicio-container">
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg bg-light shadow-sm py-3 fixed-top">
-        <div className="container">
+      <nav className="csuperior navbar navbar-expand-lg bg-light shadow-sm py-3 mb-1 fixed-top">
+        <div className=" container">
           <a className="navbar-brand fw-bold text-primary" href="/">
             SPES JOB
           </a>
@@ -89,10 +89,10 @@ export default function Home() {
 
       {/* Hero Section */}
       <header className="hero-section text-center text-white d-flex align-items-center justify-content-center">
-        <div className="container">
+        <div className="container bg-transparent">
           <form
             onSubmit={handleBuscar}
-            className="d-flex flex-column flex-md-row justify-content-center gap-2 position-relative"
+            className="d-flex flex-column flex-md-row justify-content-center gap-2 position-relative mt-4"
           >
             {/* Campo Cargo o Categoría */}
             <div className="position-relative w-100 w-md-50">
@@ -180,9 +180,9 @@ export default function Home() {
       </header>
 
       {/* Ofertas destacadas */}
-      <section className="container mt-5 pt-4">
-        <h3 className="text-center fw-bold mb-4">Ofertas destacadas</h3>
-        <div className="row g-4">
+      <section className="container bg-transparent mt-5 pt-4">
+        <h3 className="text-center fw-bold mb-4 ">Ofertas destacadas</h3>
+        <div className="row g-4 ">
           {[
             {
               titulo: "Arquitecto de obra",
@@ -206,7 +206,7 @@ export default function Home() {
             },
           ].map((item, i) => (
             <div key={i} className="col-12 col-md-6 col-lg-3">
-              <div className="card shadow-sm h-100 border-0">
+              <div className="bg-transparent card shadow-sm h-100 border-0">
                 <div className="card-body">
                   <h5 className="card-title fw-bold">{item.titulo}</h5>
                   <p className="card-text text-muted mb-1">{item.empresa}</p>
@@ -227,7 +227,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-light text-center py-4 mt-5">
+      <footer  className="bg-transparent text-center py-4 mt-5">
         <p className="mb-0 text-secondary small">
           © 2025 SPES JOB — Tu portal de empleo confiable.
         </p>
