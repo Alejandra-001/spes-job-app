@@ -55,7 +55,7 @@ function Login() {
     if (!isFormValid) return;
 
     const usuarios = [
-      { email: "admin@spes.com.co", password: "123456", rol: "admin" },
+      { email: "admin@spes.com", password: "123456", rol: "admin" },
       { email: "juan@gmail.com", password: "123456", rol: "candidato" },
     ];
 

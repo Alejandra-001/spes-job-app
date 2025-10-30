@@ -150,7 +150,7 @@ const CrearVacante = () => {
               name="titulo"
               value={formData.titulo}
               onChange={handleChange}
-              placeholder="Ej: Desarrollador Frontend"
+              placeholder="Ej: Ingeniero de Construccion"
             />
             {errors.titulo && <div className="text-danger small">{errors.titulo}</div>}
           </div>

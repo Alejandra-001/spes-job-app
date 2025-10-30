@@ -14,9 +14,9 @@ function CandidateProfile() {
     departamento: "Cundinamarca",
     pais: "Colombia",
     fechaNacimiento: "1995-06-10",
-    experiencia: "2 años de experiencia en desarrollo web.",
-    educacion: "Tecnólogo en Sistemas",
-    habilidades: "React, Node.js, MySQL, JavaScript",
+    experiencia: "2 años de experiencia en construcción",
+    educacion: "Tecnólogo en Construcción",
+    habilidades: "AutoCAD, Revit, Project Management, Blueprint Reading",
   });
 
   const [cvFile, setCvFile] = useState(null);
@@ -203,7 +203,7 @@ function CandidateProfile() {
             value={profile.habilidades}
             onChange={handleChange}
             className="form-control"
-            placeholder="Ejemplo: React, Node.js, SQL..."
+            placeholder="Ejemplo: AutoCAD, Revit, Project Management..."
           />
         </div>
 
