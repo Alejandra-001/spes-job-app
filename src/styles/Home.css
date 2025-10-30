@@ -13,7 +13,7 @@
   }
 
   body {
-    background-image: url("logo.png"); /* cambia por tu ruta */
+    background-image: url("/public/logo.png"); /* cambia por tu ruta */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
