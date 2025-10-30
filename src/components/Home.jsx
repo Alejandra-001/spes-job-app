@@ -11,6 +11,12 @@ export default function Home() {
   const [showCategorias, setShowCategorias] = useState(false);
   const [showCiudades, setShowCiudades] = useState(false);
 
+  // Detectar entorno (local o producción en GitHub Pages)
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5173/spes-job-app"
+      : "https://alejandra-001.github.io/spes-job-app";
+
   // Categorías relacionadas con construcción
   const categoriasConstruccion = [
     "Arquitecto",
@@ -41,12 +47,13 @@ export default function Home() {
     "Santa Marta",
   ];
 
+  // Acción del botón "Buscar"
   const handleBuscar = (e) => {
     e.preventDefault();
-    // Redirección directa a tu ruta de vacantes
-    window.location.href = `http:/spes-job-app/#/c/vacantes?cargo=${busqueda}&ciudad=${ciudad}`;
+    window.location.href = `${BASE_URL}/#/c/vacantes?cargo=${busqueda}&ciudad=${ciudad}`;
   };
 
+  // Filtros dinámicos
   const categoriasFiltradas = categoriasConstruccion
     .filter((cat) => cat.toLowerCase().includes(busqueda.toLowerCase()))
     .slice(0, 5);
@@ -83,7 +90,6 @@ export default function Home() {
       {/* Hero Section */}
       <header className="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div className="container">
-            <div></div>
           <form
             onSubmit={handleBuscar}
             className="d-flex flex-column flex-md-row justify-content-center gap-2 position-relative"
@@ -178,10 +184,26 @@ export default function Home() {
         <h3 className="text-center fw-bold mb-4">Ofertas destacadas</h3>
         <div className="row g-4">
           {[
-            { titulo: "Arquitecto de obra", empresa: "Constructora Nova", ciudad: "Bogotá" },
-            { titulo: "Maestro de obra", empresa: "Edifica S.A.", ciudad: "Medellín" },
-            { titulo: "Electricista industrial", empresa: "ElectroPro", ciudad: "Cali" },
-            { titulo: "Topógrafo", empresa: "GeoIngeniería", ciudad: "Barranquilla" },
+            {
+              titulo: "Arquitecto de obra",
+              empresa: "Constructora Nova",
+              ciudad: "Bogotá",
+            },
+            {
+              titulo: "Maestro de obra",
+              empresa: "Edifica S.A.",
+              ciudad: "Medellín",
+            },
+            {
+              titulo: "Electricista industrial",
+              empresa: "ElectroPro",
+              ciudad: "Cali",
+            },
+            {
+              titulo: "Topógrafo",
+              empresa: "GeoIngeniería",
+              ciudad: "Barranquilla",
+            },
           ].map((item, i) => (
             <div key={i} className="col-12 col-md-6 col-lg-3">
               <div className="card shadow-sm h-100 border-0">
@@ -191,7 +213,9 @@ export default function Home() {
                   <p className="text-secondary small mb-2">{item.ciudad}</p>
                   <button
                     className="btn btn-outline-primary btn-sm"
-                    onClick={() => (window.location.href = "http:/spes-job-app/#/c/vacantes")}
+                    onClick={() =>
+                      (window.location.href = `${BASE_URL}/#/c/vacantes`)
+                    }
                   >
                     Ver detalles
                   </button>
