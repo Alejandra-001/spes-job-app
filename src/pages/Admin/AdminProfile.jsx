@@ -4,7 +4,7 @@ import "./../../styles/AdminProfile.css";
 const PerfilAdmin = () => {
   const [email, setEmail] = useState("admin@spes.com");
   const [password, setPassword] = useState("123456");
-  const [logo, setLogo] = useState("/logo.png");
+  const [logo, setLogo] = useState("logo.png");
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
