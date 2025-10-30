@@ -89,17 +89,21 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/c/vacantes" onClick={cerrarMenuResponsive}>
-                    Vacantes
-                  </Link>
-                </li>
+                <Link className="nav-link" to="/c/vacantes" onClick={cerrarMenuResponsive}>
+                  Vacantes
+                </Link>
+              </li>
+
+              {/* Solo mostrar “Mis Postulaciones” si el usuario está logeado */}
+              {localStorage.getItem("usuario") && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/c/vacantesAplicadas" onClick={cerrarMenuResponsive}>
                     Mis Postulaciones
                   </Link>
                 </li>
-              </>
-            )}
+              )}
+            </>
+          )}
 
             {/* Cuando está en modo hamburguesa, mostrar Perfil/Cerrar dentro */}
             {!navbarColapsada && (
