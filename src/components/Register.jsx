@@ -78,7 +78,7 @@ export default function Register() {
   return (
     <div className="container p-4 rounded shadow bg-white" style={{ maxWidth: "600px" }}>
       <div className="text-center mb-3">
-        <img src="/logo.png" alt="Logo SPES" style={{ width: "120px", marginBottom: "10px" }} />
+        <img src="logo.png" alt="Logo SPES" style={{ width: "120px", marginBottom: "10px" }} />
         <h3>Registro de Usuario</h3>
       </div>
 

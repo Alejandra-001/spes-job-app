@@ -1,20 +1,43 @@
+/* ====== CONTENEDOR PRINCIPAL ====== */
 .buscar-vacantes {
   max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* ====== FILTROS ====== */
 .filtros {
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .filtro-input {
   width: 40%;
   min-width: 280px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  padding: 10px 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.filtro-input:focus {
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.4);
+  outline: none;
 }
 
 .filtro-select {
   width: 180px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  transition: box-shadow 0.2s ease;
 }
 
+.filtro-select:focus {
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.4);
+  outline: none;
+}
+
+/* ====== LISTA DE VACANTES ====== */
 .lista-vacantes {
   max-height: 75vh;
   overflow-y: auto;
@@ -22,15 +45,29 @@
   padding-right: 5px;
 }
 
+/* Estilo scrollbar */
+.lista-vacantes::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lista-vacantes::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* ====== TARJETA DE VACANTE ====== */
 .vacante-card {
   cursor: pointer;
   transition: all 0.2s ease;
   border-left: 4px solid transparent;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .vacante-card:hover {
   background-color: #f8f9fa;
   border-left: 4px solid #0d6efd;
+  transform: translateY(-3px);
 }
 
 .vacante-card.activa {
@@ -38,6 +75,11 @@
   background-color: #f1f5ff;
 }
 
+.vacante-card .card-body {
+  padding: 15px;
+}
+
+/* ====== DETALLE DE VACANTE ====== */
 .detalle-vacante {
   max-height: 75vh;
   overflow-y: auto;
@@ -49,22 +91,45 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .detalle-descripcion {
   flex-grow: 1;
   overflow-y: auto;
+  line-height: 1.6;
 }
 
+.detalle-descripcion::-webkit-scrollbar {
+  width: 6px;
+}
+
+.detalle-descripcion::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+/* ====== BOTONES ====== */
 .btn-primary {
   background-color: #0d6efd;
   border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 10px 0;
 }
 
 .btn-primary:hover {
   background-color: #0b5ed7;
 }
 
+.btn-success {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 10px 0;
+}
+
+/* ====== ETIQUETAS DE TEXTO ====== */
 .card-body small {
   display: inline-block;
   background-color: #eafaf1;
@@ -74,6 +139,7 @@
   font-weight: 500;
 }
 
+/* ====== ANIMACIÓN TARJETAS ====== */
 .buscar-vacantes .card {
   transition: transform 0.2s ease-in-out;
 }
@@ -82,7 +148,43 @@
   transform: translateY(-5px);
 }
 
+/* ====== INPUTS Y SELECTS ====== */
 .buscar-vacantes select,
 .buscar-vacantes input {
   max-width: 250px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 992px) {
+  .lista-vacantes {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding-right: 0;
+  }
+
+  .filtro-input {
+    width: 100%;
+  }
+
+  .filtro-select {
+    width: 48%;
+  }
+
+  .detalle-vacante {
+    max-height: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .filtro-select {
+    width: 100%;
+  }
+
+  .vacante-card .card-body {
+    padding: 12px;
+  }
+
+  .detalle-vacante .card {
+    padding: 15px;
+  }
 }

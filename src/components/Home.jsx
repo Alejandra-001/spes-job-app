@@ -44,7 +44,7 @@ export default function Home() {
   const handleBuscar = (e) => {
     e.preventDefault();
     // Redirección directa a tu ruta de vacantes
-    window.location.href = `http://localhost:5173/c/vacantes?cargo=${busqueda}&ciudad=${ciudad}`;
+    window.location.href = `http://localhost:5173/#c/vacantes?cargo=${busqueda}&ciudad=${ciudad}`;
   };
 
   const categoriasFiltradas = categoriasConstruccion
@@ -71,10 +71,10 @@ export default function Home() {
               Iniciar sesión
             </button>
             <button
-              className="btn btn-primary"
+              className="btn btn-register-home"
               onClick={() => navigate("/registro")}
             >
-              Registrarse
+              <i className="bi bi-person-plus me-2"></i> Registrarse
             </button>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function Home() {
                   <p className="text-secondary small mb-2">{item.ciudad}</p>
                   <button
                     className="btn btn-outline-primary btn-sm"
-                    onClick={() => (window.location.href = "http://localhost:5173/c/vacantes")}
+                    onClick={() => (window.location.href = "http://localhost:5173#c/vacantes")}
                   >
                     Ver detalles
                   </button>

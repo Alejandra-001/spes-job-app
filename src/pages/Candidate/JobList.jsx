@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./../../styles/JobList.css";
 
 const BuscarVacantes = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [filtro, setFiltro] = useState("");
   const [filtroContrato, setFiltroContrato] = useState("");
@@ -13,7 +14,18 @@ const BuscarVacantes = () => {
   const [mensaje, setMensaje] = useState("");
   const [postulados, setPostulados] = useState([]);
 
-  // 📌 Información estática con ciudad incluida
+  // 🔒 Detecta si el usuario está logueado desde localStorage
+  const [usuarioLogeado, setUsuarioLogeado] = useState(false);
+
+  useEffect(() => {
+    const usuario = localStorage.getItem("usuario");
+    setUsuarioLogeado(!!usuario);
+  }, []);
+
+  // 📄 Nuevo: archivo de hoja de vida
+  const [cvCargada, setCvCargada] = useState(null);
+
+  // 📥 Datos de ejemplo
   const [vacantes] = useState([
     {
       id: 1,
@@ -45,54 +57,9 @@ const BuscarVacantes = () => {
       fechaInicio: "03/11/2025",
       fechaFin: "25/11/2025",
     },
-    {
-      id: 3,
-      titulo: "Técnico Electricista",
-      descripcion:
-        "Empresa del sector industrial requiere técnico electricista con experiencia en instalaciones eléctricas de baja y media tensión. Conocimientos en planos eléctricos y normas RETIE.",
-      ciudad: "Cali",
-      modalidad: "Presencial",
-      salario: "2.500.000",
-      empresa: "ElectroSistemas S.A.S.",
-      tipoContrato: "Por proyecto",
-      jornada: "Tiempo completo",
-      publicada: "Hace 2 horas",
-      fechaInicio: "05/11/2025",
-      fechaFin: "20/11/2025",
-    },
-    {
-      id: 4,
-      titulo: "Ingeniero Civil Residente de Obra",
-      descripcion:
-        "Se busca ingeniero civil con mínimo 3 años de experiencia en obras de infraestructura. Conocimiento en presupuestos, control de avance y manejo de contratistas.",
-      ciudad: "Barranquilla",
-      modalidad: "Híbrido",
-      salario: "5.000.000",
-      empresa: "Infraestructuras del Caribe",
-      tipoContrato: "Término indefinido",
-      jornada: "Tiempo completo",
-      publicada: "Hace 3 horas",
-      fechaInicio: "10/11/2025",
-      fechaFin: "30/11/2025",
-    },
-    {
-      id: 5,
-      titulo: "Ayudante de Construcción",
-      descripcion:
-        "Se requieren ayudantes de obra para labores generales en construcción de edificaciones. No se requiere experiencia previa, pero sí disposición y compromiso.",
-      ciudad: "Bucaramanga",
-      modalidad: "Presencial",
-      salario: "1.600.000",
-      empresa: "Constructora Ideal",
-      tipoContrato: "Por proyecto",
-      jornada: "Tiempo completo",
-      publicada: "Hace 4 horas",
-      fechaInicio: "02/11/2025",
-      fechaFin: "18/11/2025",
-    },
   ]);
 
-  // 📥 Leer parámetros desde la URL (cargo y ciudad)
+  // 📥 Leer parámetros desde la URL
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const cargoParam = params.get("cargo") || "";
@@ -102,7 +69,7 @@ const BuscarVacantes = () => {
     setFiltroCiudad(ciudadParam);
   }, [location.search]);
 
-  // 🔍 Filtrado combinado (ahora incluye ciudad)
+  // 🔍 Filtrado combinado
   const vacantesFiltradas = vacantes.filter((v) => {
     const coincideTexto =
       v.titulo.toLowerCase().includes(filtro.toLowerCase()) ||
@@ -122,7 +89,7 @@ const BuscarVacantes = () => {
     return coincideTexto && coincideContrato && coincideJornada && coincideCiudad;
   });
 
-  // 🔁 Limpia selección si el filtro cambia y ya no coincide
+  // 🔁 Limpia selección si el filtro cambia
   useEffect(() => {
     if (
       vacanteSeleccionada &&
@@ -137,12 +104,24 @@ const BuscarVacantes = () => {
     setMensaje("");
   };
 
-  const handlePostularse = (vacante) => {
-    setPostulados([...postulados, vacante.id]);
-    setMensaje(`✅ Te has postulado exitosamente a la vacante "${vacante.titulo}"`);
+  const handleArchivo = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCvCargada(file);
+      setMensaje(`📄 Hoja de vida cargada: ${file.name}`);
+    }
   };
 
-  // 📍 Lista de ciudades únicas para el filtro
+  const handlePostularse = (vacante) => {
+    if (!usuarioLogeado && !cvCargada) {
+      setMensaje("⚠️ Para postularte, inicia sesión o adjunta tu hoja de vida.");
+      return;
+    }
+
+    setPostulados([...postulados, vacante.id]);
+    setMensaje(`✅ Te has postulado exitosamente a "${vacante.titulo}"`);
+  };
+
   const ciudades = [...new Set(vacantes.map((v) => v.ciudad))];
 
   return (
@@ -194,7 +173,6 @@ const BuscarVacantes = () => {
         </select>
       </div>
 
-      {/* 🔹 Layout principal */}
       <div className="row g-4">
         {/* 🧾 Lista de vacantes */}
         <div className="col-md-5 lista-vacantes">
@@ -216,21 +194,13 @@ const BuscarVacantes = () => {
                     {v.ciudad} • {v.modalidad}
                   </p>
                   <p className="text-success fw-semibold mb-1">💰 ${v.salario}</p>
-
-                  <p className="text-muted small mb-0">
-                    <strong>Inicio Convocatoria:</strong> {v.fechaInicio}
-                  </p>
-                  <p className="text-muted small mb-2">
-                    <strong>Fin Convocatoria:</strong> {v.fechaFin}
-                  </p>
-
                   <p className="text-muted small">{v.publicada}</p>
                 </div>
               </div>
             ))
           ) : (
             <p className="text-center text-muted mt-3">
-              No se encontraron vacantes que coincidan con tu búsqueda.
+              No se encontraron vacantes.
             </p>
           )}
         </div>
@@ -249,18 +219,8 @@ const BuscarVacantes = () => {
                 {vacanteSeleccionada.jornada}
               </p>
 
-              <p className="small text-muted mb-1">
-                <strong>Inicio Convocatoria:</strong>{" "}
-                {vacanteSeleccionada.fechaInicio}
-              </p>
-              <p className="small text-muted mb-3">
-                <strong>Fin Convocatoria:</strong> {vacanteSeleccionada.fechaFin}
-              </p>
-
               <hr />
-              <div className="detalle-descripcion">
-                <p>{vacanteSeleccionada.descripcion}</p>
-              </div>
+              <p>{vacanteSeleccionada.descripcion}</p>
               <hr />
 
               <p className="fw-semibold text-success">
@@ -268,13 +228,40 @@ const BuscarVacantes = () => {
               </p>
 
               <div className="mt-auto text-center">
+                {/* ⚙️ Si NO está logeado */}
+                {!usuarioLogeado && (
+                  <>
+                    <div className="text-muted small mb-2">
+                      Para postularte,{" "}
+                      <span
+                        className="text-primary fw-semibold text-decoration-none"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate("/login")}
+                      >
+                        inicia sesión
+                      </span>{" "}
+                      o adjunta tu hoja de vida:
+                    </div>
+                    <input
+                      type="file"
+                      className="form-control form-control-sm mb-3 mx-auto"
+                      accept=".pdf,.doc,.docx"
+                      onChange={handleArchivo}
+                    />
+                  </>
+                )}
+
                 <button
-                  className={`btn w-100 mt-3 ${
+                  className={`btn w-100 mt-2 ${
                     postulados.includes(vacanteSeleccionada.id)
                       ? "btn-success"
                       : "btn-primary"
                   }`}
-                  disabled={postulados.includes(vacanteSeleccionada.id)}
+                  disabled={
+                    (postulados.includes(vacanteSeleccionada.id) &&
+                      usuarioLogeado) ||
+                    (!usuarioLogeado && !cvCargada)
+                  }
                   onClick={() => handlePostularse(vacanteSeleccionada)}
                 >
                   {postulados.includes(vacanteSeleccionada.id)
@@ -283,9 +270,15 @@ const BuscarVacantes = () => {
                 </button>
 
                 {mensaje && (
-                  <div className="text-success mt-2 small">{mensaje}</div>
+                  <div
+                    className={`mt-2 small ${
+                      mensaje.includes("⚠️") ? "text-warning" : "text-success"
+                    }`}
+                  >
+                    {mensaje}
+                  </div>
                 )}
-              </div>
+              </div>              
             </div>
           ) : (
             <div className="text-center text-muted mt-5">
