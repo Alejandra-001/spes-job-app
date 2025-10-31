@@ -65,9 +65,9 @@ export default function Home() {
   return (
     <div className="inicio-container">
       {/* Navbar */}
-      <nav className="csuperior navbar navbar-expand-lg bg-light shadow-sm py-3 mb-1 fixed-top">
-        <div className=" container">
-          <a className="navbar-brand fw-bold text-primary" href="/">
+      <nav className="navbar navbar-expand-lg bg-light shadow-sm py-3 mb-1 fixed-top">
+        <div className="csuperior container">
+          <a className="navbar-brand fw-bold text-warning" href="/">
             SPES JOB
           </a>
           <div className="d-flex ms-auto">
@@ -88,7 +88,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <header className="hero-section text-center text-white d-flex align-items-center justify-content-center">
+      <header className="cbusqueda hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div className="container bg-transparent">
           <form
             onSubmit={handleBuscar}
@@ -180,8 +180,8 @@ export default function Home() {
       </header>
 
       {/* Ofertas destacadas */}
-      <section className="container bg-transparent mt-5 pt-4">
-        <h3 className="text-center fw-bold mb-4 ">Ofertas destacadas</h3>
+      <section className="container bg-transparent pt-4">
+        <h3 className="tofertas text-center fw-bold mb-4">Ofertas destacadas</h3>
         <div className="row g-4 ">
           {[
             {
@@ -206,7 +206,7 @@ export default function Home() {
             },
           ].map((item, i) => (
             <div key={i} className="col-12 col-md-6 col-lg-3">
-              <div className="bg-transparent card shadow-sm h-100 border-0">
+              <div className="bg-light card shadow-sm h-100 border-0">
                 <div className="card-body">
                   <h5 className="card-title fw-bold">{item.titulo}</h5>
                   <p className="card-text text-muted mb-1">{item.empresa}</p>
@@ -227,8 +227,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer  className="bg-transparent text-center py-4 mt-5">
-        <p className="mb-0 text-secondary small">
+      <footer  className="bg-transparent text-center mt-3 py-4">
+        <p className="mb-0 text-secondary small text-warning">
           © 2025 SPES JOB — Tu portal de empleo confiable.
         </p>
       </footer>

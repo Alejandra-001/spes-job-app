@@ -10,6 +10,8 @@ body {
   position: relative;
 }
 
+
+
 /* 🕶️ Capa semitransparente para resaltar el contenido */
 body::before {
   content: "";
@@ -28,11 +30,17 @@ body::before {
 }
 
 /* ====== NAVBAR ====== */
-.csuperior {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+.csuperior {  
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
 }
+
+.cbusqueda {
+    padding-top: 20px !important;
+    padding-bottom: 10px !important;
+
+}
+
 
 /* ====== BOTONES ====== */
 .btn-register-home {
@@ -136,9 +144,16 @@ footer p {
   margin: 0;
 }
 
+.tofertas{
+  color: #d48806 !important;
+}
+
 @media (max-width: 768px) {
   body {
     background-image: none;
     background-color: #fff; /* o el color que prefieras de fondo */
   }
+  .tofertas{
+  color:rgb(19, 5, 92) !important;
+}
 }
