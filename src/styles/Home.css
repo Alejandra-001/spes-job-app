@@ -80,15 +80,6 @@ form input.form-control {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-form .btn-warning {
-  background-color: rgb(39, 39, 165);
-  color: #000000;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 10px 18px;
-  transition: all 0.3s ease-in-out;
-}
-
 form .btn-warning:hover {
   background-color: #f0a500;
   color: #fff;
