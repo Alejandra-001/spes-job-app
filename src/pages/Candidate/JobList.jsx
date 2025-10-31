@@ -14,18 +14,17 @@ const BuscarVacantes = () => {
   const [mensaje, setMensaje] = useState("");
   const [postulados, setPostulados] = useState([]);
 
-  // 🔒 Detecta si el usuario está logueado desde localStorage
+  // 🔒 Estado de sesión
   const [usuarioLogeado, setUsuarioLogeado] = useState(false);
-
   useEffect(() => {
     const usuario = localStorage.getItem("usuario");
     setUsuarioLogeado(!!usuario);
   }, []);
 
-  // 📄 Nuevo: archivo de hoja de vida
+  // 📄 Hoja de vida
   const [cvCargada, setCvCargada] = useState(null);
 
-  // 📥 Datos de ejemplo
+  // 📋 Ejemplo de vacantes
   const [vacantes] = useState([
     {
       id: 1,
@@ -59,7 +58,7 @@ const BuscarVacantes = () => {
     },
   ]);
 
-  // 📥 Leer parámetros desde la URL
+  // 📥 Leer parámetros de la URL
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const cargoParam = params.get("cargo") || "";
@@ -75,21 +74,17 @@ const BuscarVacantes = () => {
       v.titulo.toLowerCase().includes(filtro.toLowerCase()) ||
       v.ciudad.toLowerCase().includes(filtro.toLowerCase()) ||
       v.modalidad.toLowerCase().includes(filtro.toLowerCase());
-
     const coincideContrato =
       filtroContrato === "" || v.tipoContrato === filtroContrato;
-
     const coincideJornada =
       filtroJornada === "" || v.jornada === filtroJornada;
-
     const coincideCiudad =
       filtroCiudad === "" ||
       v.ciudad.toLowerCase().includes(filtroCiudad.toLowerCase());
-
     return coincideTexto && coincideContrato && coincideJornada && coincideCiudad;
   });
 
-  // 🔁 Limpia selección si el filtro cambia
+  // 🔁 Reset si cambia el filtro
   useEffect(() => {
     if (
       vacanteSeleccionada &&
@@ -99,9 +94,11 @@ const BuscarVacantes = () => {
     }
   }, [filtro, filtroContrato, filtroJornada, filtroCiudad]);
 
+  // 🧠 Al seleccionar una vacante
   const handleSeleccionar = (vacante) => {
     setVacanteSeleccionada(vacante);
     setMensaje("");
+    setCvCargada(null); // obliga a cargar CV cada vez que selecciona
   };
 
   const handleArchivo = (e) => {
@@ -113,11 +110,10 @@ const BuscarVacantes = () => {
   };
 
   const handlePostularse = (vacante) => {
-    if (!usuarioLogeado && !cvCargada) {
-      setMensaje("⚠️ Para postularte, inicia sesión o adjunta tu hoja de vida.");
+    if (!cvCargada) {
+      setMensaje("⚠️ Debes adjuntar tu hoja de vida antes de postularte.");
       return;
     }
-
     setPostulados([...postulados, vacante.id]);
     setMensaje(`✅ Te has postulado exitosamente a "${vacante.titulo}"`);
   };
@@ -128,7 +124,7 @@ const BuscarVacantes = () => {
     <div className="buscar-vacantes container my-5">
       <h2 className="text-center text-primary mb-4">Buscar Vacantes</h2>
 
-      {/* 🔹 Barra de búsqueda y filtros */}
+      {/* Filtros */}
       <div className="filtros d-flex flex-wrap justify-content-center gap-2 mb-4 bg-white p-3 rounded shadow-sm">
         <input
           type="text"
@@ -174,7 +170,7 @@ const BuscarVacantes = () => {
       </div>
 
       <div className="row g-4">
-        {/* 🧾 Lista de vacantes */}
+        {/* Lista de vacantes */}
         <div className="col-md-5 lista-vacantes">
           {vacantesFiltradas.length > 0 ? (
             vacantesFiltradas.map((v) => (
@@ -205,7 +201,7 @@ const BuscarVacantes = () => {
           )}
         </div>
 
-        {/* 🧠 Detalle de vacante */}
+        {/* Detalle de vacante */}
         <div className="col-md-7 detalle-vacante">
           {vacanteSeleccionada ? (
             <div className="card shadow-sm p-4 h-100">
@@ -228,20 +224,12 @@ const BuscarVacantes = () => {
               </p>
 
               <div className="mt-auto text-center">
-                {/* ⚙️ Si NO está logeado */}
-                {!usuarioLogeado && (
+                {/* Solicitar CV antes de postular */}
+                {!cvCargada && (
                   <>
-                    <div className="text-muted small mb-2">
-                      Para postularte,{" "}
-                      <span
-                        className="text-primary fw-semibold text-decoration-none"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => navigate("/login")}
-                      >
-                        inicia sesión
-                      </span>{" "}
-                      o adjunta tu hoja de vida:
-                    </div>
+                    <p className="text-muted small mb-2">
+                      📎 Antes de postularte, por favor adjunta tu hoja de vida:
+                    </p>
                     <input
                       type="file"
                       className="form-control form-control-sm mb-3 mx-auto"
@@ -258,9 +246,7 @@ const BuscarVacantes = () => {
                       : "btn-primary"
                   }`}
                   disabled={
-                    (postulados.includes(vacanteSeleccionada.id) &&
-                      usuarioLogeado) ||
-                    (!usuarioLogeado && !cvCargada)
+                    postulados.includes(vacanteSeleccionada.id) || !cvCargada
                   }
                   onClick={() => handlePostularse(vacanteSeleccionada)}
                 >
@@ -278,7 +264,7 @@ const BuscarVacantes = () => {
                     {mensaje}
                   </div>
                 )}
-              </div>              
+              </div>
             </div>
           ) : (
             <div className="text-center text-muted mt-5">
