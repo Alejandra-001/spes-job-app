@@ -135,3 +135,10 @@ footer {
 footer p {
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  body {
+    background-image: none;
+    background-color: #fff; /* o el color que prefieras de fondo */
+  }
+}
